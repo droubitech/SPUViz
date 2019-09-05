@@ -43,6 +43,8 @@
 
 ### LLTM SAD69
 
+[Download](https://github.com/droubitech/SPUViz/blob/master/LLTM_DEMARCADA_SAD69.geojson)
+
 <script src="https://embed.github.com/view/geojson/droubitech/SPUViz/master/LLTM_PRESUMIDA_SAD69.geojson"></script>
 
 ### LLTM SIRGAS2000
