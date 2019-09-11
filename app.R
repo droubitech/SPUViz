@@ -17,27 +17,27 @@ ui <- bootstrapPage(
 server <- function(input, output, session) {
   
   # Ler dados
-  EEZ <- sf::st_read("E:/Documents/SPU/SPUGEOM/br_EEZ.gml", 
+  EEZ <- sf::st_read("br_EEZ.gml", 
                      crs = 4326) %>%
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
   
-  IW <- sf::st_read("E:/Documents/SPU/SPUGEOM/br_aguas_internas.gml", 
+  IW <- sf::st_read("br_aguas_internas.gml", 
                     crs = 4326) %>%
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
   
-  TS <- sf::st_read("E:/Documents/SPU/SPUGEOM/br_mar_territorial.gml", 
+  TS <- sf::st_read("br_mar_territorial.gml", 
                     crs = 4326) %>%
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
   
-  CZ <- sf::st_read("E:/Documents/SPU/SPUGEOM/br_zona_contigua.gml", 
+  CZ <- sf::st_read("br_zona_contigua.gml", 
                     crs = 4326) %>%
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
   
-  TRINDADE <- sf::st_read("E:/Documents/SPU/SPUGEOM/br_Trindade.gml", 
+  TRINDADE <- sf::st_read("br_Trindade.gml", 
                           crs = 4326) %>%
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
