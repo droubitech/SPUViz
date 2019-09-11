@@ -10,21 +10,18 @@ conn <- dbConnect("PostgreSQL",
 
 # Portos no município de SFS e Itapoá
 portos <- st_read(conn,
-                  query = "SELECT * FROM espacoaquatico.portos
-                  WHERE municipio = 8319 OR municipio = 9985;") %>%
+                  query = "SELECT * FROM espacoaquatico.portos;") %>%
   st_transform(crs = 4326)
 # Cessões no município de SFS e Itapoá
 cessao <- st_read(conn, 
-                  query = "SELECT * FROM espacoaquatico.cessao 
-                  WHERE municipio = 8319 OR municipio = 9985;") %>%
+                  query = "SELECT * FROM espacoaquatico.cessao;") %>%
   st_transform(crs = 4326)
 # Certidões no município de SFS e Itapoá
 certdisp <- st_read(conn, 
-                    query = "SELECT * FROM espacoaquatico.certdisp
-                  WHERE municipio = 8319 OR municipio = 9985;") %>%
+                    query = "SELECT * FROM espacoaquatico.certdisp;") %>%
   st_transform(crs = 4326)
 
 ## Escrever no disco
-st_write(portos, "portos.geojson")
-st_write(certdisp, "certdisp.geojson")
-st_write(cessao, "cessoes.geojson")
+st_write(portos, "portos.geojson", delete_dsn = TRUE)
+st_write(certdisp, "certdisp.geojson", delete_dsn = TRUE)
+st_write(cessao, "cessoes.geojson", delete_dsn = TRUE)
