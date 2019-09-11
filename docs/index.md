@@ -5,7 +5,7 @@
 
 ### LLTM SAD69
 
-[Download](https://github.com/droubitech/SPUViz/raw/master/LLTM_HOMOLOGADA_SAD69.geojson)
+<a href="https://github.com/droubitech/SPUViz/raw/master/LLTM_HOMOLOGADA_SAD69.geojson">Download</a>
 
 <script src="https://embed.github.com/view/geojson/droubitech/SPUViz/master/LLTM_HOMOLOGADA_SAD69.geojson"></script>
 

@@ -60,9 +60,11 @@ server <- function(input, output, session) {
       addTiles(group = "OSM (default)") %>%
       addProviderTiles(providers$OpenSeaMap, group = "OpenSea") %>%
       addProviderTiles(providers$Esri.OceanBasemap, group = "Esri Ocean") %>%
+      addProviderTiles(providers$Esri.WorldImagery, group = "Esri Imagery") %>%
       addWMSTiles(baseUrl = "http://sigsc.sc.gov.br/sigserver/SIGSC/wms", 
                   layers = list("OrtoRGB-Landsat-2012"),
                   group = "SIG-SC") %>%
+      fitBounds(lng1 = -54, lng2 = -48.3, lat1 = -29.4, lat2 = -25.95) %>%
       addPolygons(data = EEZ, color = "green", group = "Zona Econômica Exclusiva") %>%
       addPolygons(data = IW, color = "royalblue", group = "Águas Internas") %>%
       addPolygons(data = TS, color = "navy", group = "Mar Territorial") %>%
@@ -79,7 +81,9 @@ server <- function(input, output, session) {
       #addGraticule(interval = .05, style = list(weight = .2)) %>%
       addMiniMap(position = "topleft", zoomLevelOffset = -3, toggleDisplay = TRUE)  %>%
       # Layers control
-      addLayersControl(baseGroups = c("OSM (default)", "OpenSea", "Esri Ocean", "SIG-SC"),
+      addLayersControl(baseGroups = c( "SIG-SC", "OSM (default)", "OpenSea", 
+                                       "Esri Ocean", "Esri Imagery", 
+                                       "Google Satellite"),
         overlayGroups = c("Cessões", "Certidões de Disponibilidade", "Portos", 
                           "Águas Internas", "Mar Territorial", "Zona Contígua",
                           "Zona Econômica Exclusiva", "Trindade"),
