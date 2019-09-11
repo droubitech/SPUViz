@@ -42,13 +42,13 @@ server <- function(input, output, session) {
     sf::st_cast("GEOMETRYCOLLECTION") %>% 
     sf::st_collection_extract("POLYGON")
   
-  portos <- sf::st_read("portos.shp") %>%
+  portos <- sf::st_read("portos.geojson") %>%
     sf::st_transform(crs = 4326)
   
-  certdisp <- sf::st_read("certdisp.shp") %>%
+  certdisp <- sf::st_read("certdisp.geojson") %>%
     sf::st_transform(crs = 4326)
     
-  cessoes <- sf::st_read("cessoes.shp") %>%
+  cessoes <- sf::st_read("cessoes.geojson") %>%
     sf::st_transform(crs = 4326)
   
   ext <- extent(certdisp[1, ])

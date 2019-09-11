@@ -25,6 +25,6 @@ certdisp <- st_read(conn,
   st_transform(crs = 4326)
 
 ## Escrever no disco
-st_write(portos, "portos.shp")
-st_write(certdisp, "certdisp.shp")
-st_write(cessao, "cessoes.shp")
+st_write(portos, "portos.geojson")
+st_write(certdisp, "certdisp.geojson")
+st_write(cessao, "cessoes.geojson")
