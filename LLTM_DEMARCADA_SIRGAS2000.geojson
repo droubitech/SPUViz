@@ -8668,7 +8668,10 @@
       "style": {
         "color": "red",
         "dashArray": "20 10"
-      }
+      },
+    "className": {
+        "baseVal": "LLTM_demarcada"
+    }
     }
   ]
 }
