@@ -43,10 +43,64 @@
             alert(xhr.statusText)
           }
         })
+        
+        var LLTM_DEMARCADA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LLTM_DEMARCADA.geojson",
+          dataType: "json",
+          success: console.log("LLTM Demarcada data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var LLTM_HOMOLOGADA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LLTM_HOMOLOGADA.geojson",
+          dataType: "json",
+          success: console.log("LLTM Homologada data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
 
+        var LLTM_PRESUMIDA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LLTM_PRESUMIDA.geojson",
+          dataType: "json",
+          success: console.log("LLTM Presumida data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var LPM_DEMARCADA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LPM_DEMARCADA.geojson",
+          dataType: "json",
+          success: console.log("LPM Demarcada data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var LPM_HOMOLOGADA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LPM_HOMOLOGADA.geojson",
+          dataType: "json",
+          success: console.log("LPM Homologada data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+
+        var LPM_PRESUMIDA = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/LPM_PRESUMIDA.geojson",
+          dataType: "json",
+          success: console.log("LPM Presumida data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
         /* when().done() SECTION*/
         // Add the variable for each of your AJAX requests to $.when()
-        $.when(portos, cessoes).done(function() {
+        $.when(portos, cessoes, LLTM_DEMARCADA, LLTM_HOMOLOGADA, LLTM_PRESUMIDA,
+        LPM_DEMARCADA, LPM_HOMOLOGADA, LPM_PRESUMIDA).done(function() {
             var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
                 maxZoom: 18,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -81,12 +135,48 @@
                 weight: 0.75 }).
             addTo(map);
 
-            var kyMotorways = L.geoJSON(cessoes.responseJSON, {
+            var Cessoes = L.geoJSON(cessoes.responseJSON, {
                 color: 'red',
                 weight: 1 }).
             addTo(map);
+            
+            var LLTM_DEM = L.geoJSON(LLTM_DEMARCADA.responseJSON, {
+                color: 'red',
+                weight: 2,
+                dashArray: "20 20"}).
+            addTo(map);
+            
+            var LLTM_HOM = L.geoJSON(LLTM_HOMOLOGADA.responseJSON, {
+                color: 'red',
+                weight: 2}).
+            addTo(map);
 
-            });
+            var LLTM_PRE = L.geoJSON(LLTM_PRESUMIDA.responseJSON, {
+                color: 'red',
+                weight: 2,
+                opacity: .25,
+                dashArray: "20 20"}).
+            addTo(map);  
+            
+            var LPM_DEM = L.geoJSON(LPM_DEMARCADA.responseJSON, {
+                color: 'blue',
+                weight: 2,
+                dashArray: "20 20"}).
+            addTo(map);
+            
+            var LPM_HOM = L.geoJSON(LPM_HOMOLOGADA.responseJSON, {
+                color: 'blue',
+                weight: 2}).
+            addTo(map);
+
+            var LPM_PRE = L.geoJSON(LPM_PRESUMIDA.responseJSON, {
+                color: 'blue',
+                weight: 2,
+                opacity: .25,
+                dashArray: "20 20"}).
+            addTo(map);  
+          
+        });
     </script>
 </body>
 </html>
