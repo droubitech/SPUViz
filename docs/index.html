@@ -43,13 +43,10 @@
             alert(xhr.statusText)
           }
         })
-            var cities = L.layerGroup();
 
-            L.marker([-27.675, -51.15]).addTo(cities),
-            L.marker([-27.675, -52.15]).addTo(cities),
-            L.marker([-27.675, -50.15]).addTo(cities),
-            L.marker([-27.675, -49.15]).addTo(cities);
-
+        /* when().done() SECTION*/
+        // Add the variable for each of your AJAX requests to $.when()
+        $.when(portos, cessoes).done(function() {
             var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
                 maxZoom: 18,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -75,17 +72,21 @@
                 "OpenStreet": OpenStreetMap_DE
                 };
 
-            var overlays = {
-                "Cidades": cities
-            };
+            L.control.layers(baseLayers).addTo(map);
+            
+            // Add requested external GeoJSON to map
+            var Portos = L.geoJSON(portos.responseJSON, {
+                fillOpacity: .25,
+                color: 'orange',
+                weight: 0.75 }).
+            addTo(map);
 
-            L.control.layers(baseLayers, overlays).addTo(map);
+            var kyMotorways = L.geoJSON(cessoes.responseJSON, {
+                color: 'red',
+                weight: 1 }).
+            addTo(map);
 
-            // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
-            $.getJSON("portos.geojson",function(data){
-            // L.geoJson function is used to parse geojson file and load on to map
-            L.geoJson(data).addTo(map);
-          });
+            });
     </script>
 </body>
 </html>
