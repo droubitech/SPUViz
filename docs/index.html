@@ -26,6 +26,42 @@
     <!-- MAP SCRIPT -->
     <script> 
         // Add AJAX request for data
+        var eez = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/EEZ.geojson",
+          dataType: "json",
+          success: console.log("EEZ data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var cz = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/CZ.geojson",
+          dataType: "json",
+          success: console.log("CZ data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var ts = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/TS.geojson",
+          dataType: "json",
+          success: console.log("TS data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
+        var iw = $.ajax({
+          url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/IW.geojson",
+          dataType: "json",
+          success: console.log("IW data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+        
         var portos = $.ajax({
           url:"https://raw.githubusercontent.com/droubitech/SPUViz/master/portos.geojson",
           dataType: "json",
@@ -99,8 +135,8 @@
         })
         /* when().done() SECTION*/
         // Add the variable for each of your AJAX requests to $.when()
-        $.when(portos, cessoes, LLTM_DEMARCADA, LLTM_HOMOLOGADA, LLTM_PRESUMIDA,
-        LPM_DEMARCADA, LPM_HOMOLOGADA, LPM_PRESUMIDA).done(function() {
+        $.when(eez, cz, ts, iw, portos, cessoes, LLTM_DEMARCADA, LLTM_HOMOLOGADA, 
+        LLTM_PRESUMIDA, LPM_DEMARCADA, LPM_HOMOLOGADA, LPM_PRESUMIDA).done(function() {
             var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
                 maxZoom: 18,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -129,6 +165,30 @@
             L.control.layers(baseLayers).addTo(map);
             
             // Add requested external GeoJSON to map
+            var EEZ = L.geoJSON(eez.responseJSON, {
+                color: 'green',
+                weight: 2,
+                fillOpacity: .25}).
+            addTo(map);  
+            
+            var CZ = L.geoJSON(cz.responseJSON, {
+                color: 'blue4',
+                weight: 2,
+                fillOpacity: .25}).
+            addTo(map);  
+            
+            var TS = L.geoJSON(ts.responseJSON, {
+                color: 'navy',
+                weight: 2,
+                fillOpacity: .25}).
+            addTo(map);  
+
+            var IW = L.geoJSON(iw.responseJSON, {
+                color: 'royalblue',
+                weight: 2,
+                fillOpacity: .25}).
+            addTo(map);  
+            
             var Portos = L.geoJSON(portos.responseJSON, {
                 fillOpacity: .25,
                 color: 'orange',
