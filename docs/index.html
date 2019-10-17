@@ -147,11 +147,15 @@
             });
 
             var wmsLayer = L.tileLayer.wms('http://sigsc.sc.gov.br/sigserver/SIGSC/wms', {
-                            layers: 'OrtoRGB-Landsat-2012'
+                maxNativeZoom: 19,
+                maxZoom: 100,
+                layers: 'OrtoRGB-Landsat-2012'
             });
             
             var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                maxNativeZoom: 19,
+                maxZoom: 100,
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
             var map = L.map('map', {
@@ -163,8 +167,8 @@
             var baseLayers = {
                 "OpenTopo": OpenTopoMap,
                 "SIG-SC": wmsLayer,
-                "OpenStreet": OpenStreetMap_DE
-                "Esri Satellite": Esri_WorldImagery
+                "OpenStreet": OpenStreetMap_DE,
+                "Esri World Imagery": Esri_WorldImagery
                 };
 
             L.control.layers(baseLayers).addTo(map);
